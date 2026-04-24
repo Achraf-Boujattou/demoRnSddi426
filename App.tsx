@@ -1,103 +1,72 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// Screens
 import Home from './components/Home';
-import CustomButton from './components/CustomButton';
-import Inputs from './components/Ui1';
 import Calcule from './components/Calcule';
-// type State = {
-//   productCount: number;
-// };
+import UiExample from './components/Ui1';
+import FlatListBasics from './components/ListComponent';
+import MediaComponent from './components/MediaComponent';
+import Weather from './components/Weather';
+import Movies from './components/Movies';
+
+const Stack = createNativeStackNavigator();
 
 export default class App extends React.Component {
-
-  // state = {
-  //   msg: 'Hi All',
-  //   number: 1,
-  // };
-
-  // updateState = () => {
-  //   this.setState({
-  //     msg: 'Hi Students!!!'
-  //   });
-  // };
-
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-
-  //       <Text style={styles.title}>
-  //         {this.state.msg}
-  //       </Text>
-
-  //       <Text style={styles.number}>
-  //         {this.state.number}
-  //       </Text>
-
-  //       <Button
-  //         title="SET STATE !!!"
-  //         onPress={this.updateState}
-  //       />
-
-  //       <Home />
-
-  //     </View>
-  //   );
-  // }
-
-  //  constructor(props: {}) {
-  //   super(props);
-
-  //   this.state = {
-  //     productCount: 0
-  //   };
-  // }
-
-  // addProduct = () => {
-  //   this.setState({
-  //     productCount: this.state.productCount + 1
-  //   });
-  // }
-
-  render() {
+  render(): React.ReactNode {
     return (
-      <View style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator 
+          initialRouteName="home"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#5f5cff',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          <Stack.Screen 
+            name="home" 
+            component={Home} 
+            options={{ title: 'Tableau de bord' }} 
+          />
+          <Stack.Screen 
+            name="calculs" 
+            component={Calcule} 
+            options={{ title: 'Calculatrice' }} 
+          />
+          <Stack.Screen 
+            name="ui1" 
+            component={UiExample} 
+            options={{ title: 'Widgets & UI' }} 
+          />
+          <Stack.Screen 
+            name="list" 
+            component={FlatListBasics} 
+            options={{ title: 'Liste de fruits' }} 
+          />
+          <Stack.Screen 
+            name="media" 
+            component={MediaComponent} 
+            options={{ title: 'Galerie Média' }} 
+          />
 
-        {/* <CustomButton onPress={this.addProduct} />
-
-        <Text>{this.state.productCount}</Text> */}
-
-        {/* <Inputs/> */}
-        <Calcule />
-
-          
-
-      </View>
+            <Stack.Screen 
+            name="weather" 
+            component={Weather} 
+            options={{ title: 'Météo' }} 
+          />
+          <Stack.Screen 
+            name="movies" 
+            component={Movies} 
+            options={{ title: '🎬 Films & Séries' }} 
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
-
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   title: {
-//     color: 'green',
-//     fontSize: 35,
-//   },
-//   number: {
-//     fontSize: 20,
-//     marginBottom: 10,
-//   },
-// });
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
